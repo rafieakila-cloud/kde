@@ -32,9 +32,10 @@ body { background: radial-gradient(900px 600px at 50% -10%, #1a1710, var(--bg));
   transition: transform 80ms linear;
 }
 .ticks { position: absolute; inset: 0; }
-.tick { position: absolute; left: 50%; top: 50%; width: 2px; height: 12px; background: #3a3a3d; transform-origin: 0 -128px; translate: 0 -128px; }
-.tick.major { background: var(--gold); height: 18px; width: 3px; }
-.tick.label { font-family: var(--serif); font-size: 10px; color: var(--muted); height: 18px; background: transparent; width: auto; }
+.tick { position: absolute; left: 50%; top: 50%; height: 2px; width: 124px; background: #2c2c31; transform-origin: 0 50%; translate: -1px -1px; }
+.tick.major { background: var(--gold); height: 3px; width: 124px; }
+.tick.major::after { content: ''; position: absolute; right: 0; top: -3px; width: 2px; height: 9px; background: var(--gold); border-radius: 1px; }
+.tick-inner { position: absolute; left: 50%; top: 50%; height: 2px; width: 118px; background: #3a3a40; transform-origin: 0 50%; }
 
 .dir { position: absolute; font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 2px; }
 .dir-u { top: 18px; left: 50%; transform: translateX(-50%); color: var(--gold); }

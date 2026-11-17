@@ -18,7 +18,7 @@ for (let d = 0; d < 360; d += 10) {
   const major = d % 30 === 0;
   const tick = document.createElement('div');
   tick.className = 'tick' + (major ? ' major' : '');
-  tick.style.transform = `translate(-50%, 0) rotate(${d}deg)`;
+  tick.style.transform = `rotate(${d}deg) translate(0, -6px)`;
   ticksEl.appendChild(tick);
 }
 
@@ -74,6 +74,27 @@ function handleOrientation(e) {
 function handleAbsolute(e) {
   if (typeof e.alpha === 'number') updateUI(e.alpha);
 }
+
+/* drag fallback (mobile + desktop) */
+let dragging = false, lastAngle = 0;
+function angleFromEvent(e, el) {
+  const r = el.getBoundingClientRect();
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const x = (e.clientX ?? e.touches?.[0]?.clientX ?? cx) - cx;
+  const y = (e.clientY ?? e.touches?.[0]?.clientY ?? cy) - cy;
+  return Math.atan2(y, x) * 180 / Math.PI + 90;
+}
+dialEl.addEventListener('pointerdown', e => { dragging = true; dialEl.setPointerCapture(e.pointerId); lastAngle = angleFromEvent(e, dialEl); });
+dialEl.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const a = angleFromEvent(e, dialEl);
+  let d = a - lastAngle;
+  if (d > 180) d -= 360; if (d < -180) d += 360;
+  smoothed = (smoothed + d + 360) % 360;
+  lastAngle = a;
+  updateUI(smoothed);
+});
+['pointerup','pointercancel','pointerleave'].forEach(type => dialEl.addEventListener(type, () => { dragging = false; }));
 
 /* ---------- permission (iOS 13+) ---------- */
 async function requestAndBind() {
