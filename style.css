@@ -1,0 +1,81 @@
+/* ============================================
+   KOMPAS DIGITAL EFEKTIF — dark & gold
+   ============================================ */
+:root {
+  --bg: #0a0a0a; --card: #111114; --line: rgba(255,255,255,.08);
+  --gold: #f7b733; --gold-2: #d9931e; --text: #f1f1f1; --muted: #8a8a8a;
+  --serif: Georgia, 'Palatino Linotype', serif;
+}
+* { box-sizing: border-box; margin: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { background: radial-gradient(900px 600px at 50% -10%, #1a1710, var(--bg)); color: var(--text); font-family: var(--serif); overflow: hidden; }
+
+/* TOP BAR */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: calc(10px + env(safe-area-inset-top)) 16px 10px; border-bottom: 1px solid var(--line); position: relative; z-index: 5; }
+.menu-btn, .icon-btn { background: transparent; border: none; color: var(--gold); padding: 8px; border-radius: 12px; cursor: pointer; transition: transform .15s; }
+.menu-btn:active, .icon-btn:active { transform: scale(.9); }
+.brand { font-size: 14px; letter-spacing: 1px; font-weight: 700; }
+.brand em { color: var(--gold); font-style: italic; }
+
+/* STAGE */
+.stage { display: flex; flex-direction: column; align-items: center; justify-content: center; height: calc(100vh - 54px); padding-bottom: 8vh; }
+
+/* RING */
+.ring { position: absolute; inset: 0; background: radial-gradient(900px 600px at 50% 40%, rgba(247,183,51,.06), transparent 70%); pointer-events: none; }
+
+/* DIAL */
+.dial {
+  position: relative; width: 280px; height: 280px; border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, #1f1f23, #0f0f11 80%);
+  border: 3px solid #2a2a2d;
+  box-shadow: inset 0 0 28px rgba(0,0,0,.7), 0 14px 40px rgba(0,0,0,.8), 0 0 0 1px rgba(247,183,51,.25);
+  transition: transform 80ms linear;
+}
+.ticks { position: absolute; inset: 0; }
+.tick { position: absolute; left: 50%; top: 50%; width: 2px; height: 12px; background: #3a3a3d; transform-origin: 0 -128px; translate: 0 -128px; }
+.tick.major { background: var(--gold); height: 18px; width: 3px; }
+.tick.label { font-family: var(--serif); font-size: 10px; color: var(--muted); height: 18px; background: transparent; width: auto; }
+
+.dir { position: absolute; font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: 2px; }
+.dir-u { top: 18px; left: 50%; transform: translateX(-50%); color: var(--gold); }
+.dir-s { bottom: 18px; left: 50%; transform: translateX(-50%); color: var(--text); }
+.dir-t { top: 50%; right: 18px; transform: translateY(-50%); }
+.dir-b { top: 50%; left: 18px; transform: translateY(-50%); }
+
+.needle {
+  position: absolute; left: 50%; top: 50%;
+  width: 8px; height: 120px; margin: -60px 0 0 -4px;
+  background: linear-gradient(180deg, var(--gold) 0%, #d16e18 100%);
+  clip-path: polygon(50% 0%, 100% 45%, 50% 54%, 0% 45%);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.6));
+}
+.hub {
+  position: absolute; left: 50%; top: 50%; width: 26px; height: 26px; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle at 40% 35%, #232329, #141418);
+  border: 2px solid #3a3a3d; box-shadow: inset 0 0 6px #000, 0 1px 4px rgba(0,0,0,.8);
+}
+
+/* READOUT */
+.readout { text-align: center; margin-top: 28px; position: relative; z-index: 2; }
+.deg { font-size: 56px; font-weight: 700; letter-spacing: 6px; color: var(--gold); text-shadow: 0 4px 20px rgba(247,183,51,.2); font-variant-numeric: tabular-nums; }
+.cardinal { font-size: 18px; letter-spacing: 12px; color: var(--text); margin-top: 6px; }
+.coord { font-size: 10px; color: var(--muted); margin-top: 8px; letter-spacing: 1px; }
+@media (max-height: 620px) { .deg { font-size: 44px; } }
+
+/* MODAL */
+.modal { position: fixed; inset: 0; z-index: 40; display: flex; align-items: flex-end; justify-content: center; background: rgba(0,0,0,.6); }
+.modal.hidden { display: none; }
+.sheet { background: linear-gradient(180deg, #141417, #0e0e10); border: 1px solid var(--line); border-radius: 24px 24px 0 0; padding: 24px 22px 30px; width: 100%; max-width: 420px; animation: sheetIn .32s ease; position: relative; }
+@keyframes sheetIn { from { transform: translateY(40px); opacity: 0; } }
+.sheet-close { position: absolute; top: 14px; right: 14px; background: transparent; border: none; color: var(--muted); padding: 8px; cursor: pointer; }
+.about-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.about-logo { filter: drop-shadow(0 2px 8px rgba(0,0,0,.6)); }
+.about-brand h2 { font-size: 20px; letter-spacing: 1px; }
+.about-sub { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+.about-box { border: 1px solid var(--line); border-radius: 16px; padding: 16px; text-align: center; background: var(--card); }
+#qrImage { width: 168px; height: 168px; display: block; margin: 0 auto; border-radius: 8px; }
+.about-share { color: var(--muted); font-size: 11px; margin: 12px 0 6px; }
+.about-link { color: var(--gold); font-size: 9px; text-decoration: none; word-break: break-all; }
+.about-foot { margin-top: 16px; text-align: center; color: var(--muted); font-size: 9px; letter-spacing: 1.4px; }

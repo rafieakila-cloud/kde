@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Kompas Digital Efektif</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TOP -->
+  <header class="topbar">
+    <button id="btnMenu" class="menu-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    </button>
+    <div class="brand">Kompas Digital <em>Efektif</em></div>
+    <button id="btnShare" class="icon-btn" aria-label="Atur / Tentang">
+      <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 8h.01" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <!-- COMPASS -->
+  <main class="stage">
+    <div class="ring"></div>
+    <div class="dial" id="dial">
+      <!-- Cardinal labels -->
+      <span class="dir dir-u">U</span>
+      <span class="dir dir-t">T</span>
+      <span class="dir dir-s">S</span>
+      <span class="dir dir-b">B</span>
+      <!-- Tick marks + degrees -->
+      <div id="ticks" class="ticks"></div>
+      <!-- Needle -->
+      <div class="needle"></div>
+      <div class="hub"></div>
+    </div>
+    <div class="readout">
+      <div class="deg" id="deg">000°</div>
+      <div class="cardinal" id="cardinal">U</div>
+      <div class="coord" id="coord">menunggu sensor…</div>
+    </div>
+  </main>
+
+  <!-- ABOUT MODAL -->
+  <div id="about" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <button id="btnCloseAbout" class="sheet-close" aria-label="Tutup">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      </button>
+      <div class="about-brand">
+        <svg viewBox="0 0 80 80" width="64" height="64" class="about-logo"><circle cx="40" cy="40" r="36" fill="#f7b733" stroke="#0a0a0a" stroke-width="5"/><path d="M40 14 L48 44 L40 38 L32 44 Z" fill="#0a0a0a"/><circle cx="40" cy="40" r="6" fill="#0a0a0a"/></svg>
+        <h2>Kompas Digital Efektif</h2>
+        <p class="about-sub">Kompas realtime.share &amp; install di HP.</p>
+      </div>
+      <div class="about-box">
+        <div class="qr-frame">
+          <img id="qrImage" alt="QR share" src="">
+        </div>
+        <p class="about-share">Scan QR → install app di HP</p>
+        <a class="about-link" id="shareLink" href="#" target="_blank" rel="noopener">https://…</a>
+      </div>
+      <div class="about-foot">KDE v1.0 · PreOnView · offline-first</div>
+    </div>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>
